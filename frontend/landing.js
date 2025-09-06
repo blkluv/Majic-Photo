@@ -28,9 +28,13 @@ function renderLanding() {
         <p class="text-xl mb-8 text-purple-100 max-w-3xl mx-auto">
           AI-powered virtual staging that sells homes 73% faster. Upload your photos, and watch as our cutting-edge AI transforms empty spaces into beautifully furnished rooms that buyers can envision as their dream home.
         </p>
+        <div class="bg-white/10 backdrop-blur rounded-lg p-4 mb-8 max-w-2xl mx-auto">
+          <p class="text-lg font-semibold text-yellow-300 mb-2">🎉 Get Started Free!</p>
+          <p class="text-purple-100">10 free photo enhancements • No credit card required • Upgrade anytime</p>
+        </div>
         <div class="flex justify-center space-x-4">
           <button onclick="showRegisterModal()" class="bg-yellow-400 text-purple-900 px-8 py-4 rounded-lg text-lg font-bold hover:bg-yellow-300 transform hover:scale-105 transition shadow-lg">
-            Start Free Trial - No Credit Card Required
+            Start Free - 10 Photos Included
           </button>
           <button onclick="scrollToSection('demo')" class="bg-white/20 backdrop-blur text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-white/30 transition">
             See Examples
@@ -197,6 +201,36 @@ function renderLanding() {
             <h4 class="text-xl font-semibold mb-2">Buyer Psychology</h4>
             <p class="text-gray-600">Staged homes sell 73% faster and for up to 10% more than empty homes.</p>
           </div>
+
+          <div class="p-6 bg-gradient-to-br from-indigo-50 to-purple-50 rounded-lg hover:shadow-lg transition">
+            <div class="w-12 h-12 bg-indigo-600 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/>
+              </svg>
+            </div>
+            <h4 class="text-xl font-semibold mb-2">Custom Reprocessing</h4>
+            <p class="text-gray-600">Fine-tune results with custom prompts to get the exact style you want.</p>
+          </div>
+
+          <div class="p-6 bg-gradient-to-br from-teal-50 to-green-50 rounded-lg hover:shadow-lg transition">
+            <div class="w-12 h-12 bg-teal-600 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h4 class="text-xl font-semibold mb-2">Flexible Credits</h4>
+            <p class="text-gray-600">Start with 10 free photos. Get unlimited access with registration codes.</p>
+          </div>
+
+          <div class="p-6 bg-gradient-to-br from-orange-50 to-red-50 rounded-lg hover:shadow-lg transition">
+            <div class="w-12 h-12 bg-orange-600 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.031 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
+              </svg>
+            </div>
+            <h4 class="text-xl font-semibold mb-2">Room-Aware AI</h4>
+            <p class="text-gray-600">AI understands room context - kitchens, bedrooms, living rooms staged appropriately.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -245,32 +279,38 @@ function renderLanding() {
     <div id="pricing" class="py-20 bg-gradient-to-br from-purple-600 to-blue-600 text-white">
       <div class="container mx-auto px-6">
         <h3 class="text-4xl font-bold text-center mb-4">Simple, Transparent Pricing</h3>
-        <p class="text-center text-purple-100 mb-12 text-lg">Choose the plan that works for you</p>
+        <p class="text-center text-purple-100 mb-12 text-lg">Start free, upgrade when you're ready</p>
         
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-          <!-- Pay Per Photo -->
+          <!-- Free Tier -->
           <div class="bg-white text-gray-800 rounded-lg p-8 hover:shadow-2xl transition transform hover:scale-105">
-            <h4 class="text-2xl font-bold mb-4">Pay As You Go</h4>
-            <div class="text-4xl font-bold mb-2">$0.50</div>
-            <div class="text-gray-600 mb-6">per photo</div>
+            <h4 class="text-2xl font-bold mb-4">Free Trial</h4>
+            <div class="text-4xl font-bold mb-2">$0</div>
+            <div class="text-gray-600 mb-6">10 free photos</div>
             <ul class="space-y-3 mb-8">
               <li class="flex items-center">
                 <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                 </svg>
-                No commitment
+                No credit card required
               </li>
               <li class="flex items-center">
                 <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                 </svg>
-                Perfect for occasional use
+                Perfect for testing
               </li>
               <li class="flex items-center">
                 <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                 </svg>
                 All features included
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Custom reprocessing
               </li>
             </ul>
             <button onclick="showRegisterModal()" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
@@ -317,11 +357,11 @@ function renderLanding() {
             </button>
           </div>
           
-          <!-- Annual Plan -->
+          <!-- Registration Code -->
           <div class="bg-white text-gray-800 rounded-lg p-8 hover:shadow-2xl transition transform hover:scale-105">
-            <h4 class="text-2xl font-bold mb-4">Enterprise</h4>
-            <div class="text-4xl font-bold mb-2">$399</div>
-            <div class="text-gray-600 mb-6">per year</div>
+            <h4 class="text-2xl font-bold mb-4">Unlimited Access</h4>
+            <div class="text-4xl font-bold mb-2">Registration</div>
+            <div class="text-gray-600 mb-6">Code Required</div>
             <ul class="space-y-3 mb-8">
               <li class="flex items-center">
                 <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
@@ -333,23 +373,23 @@ function renderLanding() {
                 <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                 </svg>
-                Save 32% vs monthly
+                No monthly fees
               </li>
               <li class="flex items-center">
                 <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                 </svg>
-                API access
+                All premium features
               </li>
               <li class="flex items-center">
                 <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
                 </svg>
-                Dedicated support
+                32-char hex code
               </li>
             </ul>
             <button onclick="showRegisterModal()" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
-              Contact Sales
+              Register with Code
             </button>
           </div>
         </div>
@@ -413,9 +453,9 @@ function renderLanding() {
         <h3 class="text-4xl font-bold mb-4">Ready to Transform Your Listings?</h3>
         <p class="text-xl mb-8 text-purple-100">Join thousands of real estate professionals using AI to sell homes faster</p>
         <button onclick="showRegisterModal()" class="bg-yellow-400 text-purple-900 px-8 py-4 rounded-lg text-lg font-bold hover:bg-yellow-300 transform hover:scale-105 transition shadow-lg">
-          Start Your Free Trial Today
+          Start Free - 10 Photos Included
         </button>
-        <p class="mt-4 text-sm text-purple-200">No credit card required • 10 free photos to start</p>
+        <p class="mt-4 text-sm text-purple-200">No credit card required • Custom reprocessing • Registration codes for unlimited access</p>
       </div>
     </div>
 
