@@ -2,6 +2,7 @@
 
 > Save time, cut costs, and reduce stress with professional, AI-powered Real Estate photography.
 > We transform simple Real Estate images into captivating, ready-to-use photos without the hassle of a traditional photoshoot.
+> Sign up today to receive 10 free AI photo enhancements.  https://majic-photo.com/
 
 [![GitHub stars](https://img.shields.io/github/stars/jleboube/Majic-Photo?style=social)](https://github.com/jleboube/Majic-Photo/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/jleboube/Majic-Photo?style=social)](https://github.com/jleboube/Majic-Photo/network/members)
@@ -70,9 +71,9 @@
 
 ---
 
-## 🚀 Ready to Transform Your Product Visuals?
+## 🚀 Ready to Transform Your Real Estate Photos?
 
-Join thousands of businesses that have already streamlined their product photography with our professional AI service.
+Join thousands of Realtors that have already streamlined their product photography with our professional AI service.
 
 ---
 
