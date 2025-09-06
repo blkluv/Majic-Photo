@@ -1,0 +1,156 @@
+{
+  "title": "Product Requirements Document: AI Real Estate Photo Enhancer",
+  "sections": [
+    {
+      "heading": "1. Introduction & Purpose",
+      "content": "The purpose of this document is to outline the requirements for a web-based application designed to enhance real estate photos using artificial intelligence. The application will allow real estate professionals to upload photos, which will then be automatically analyzed and enhanced to improve their quality and presentation. The primary goal is to provide a seamless workflow for transforming raw photos into professional-grade marketing assets."
+    },
+    {
+      "heading": "2. Project Goals",
+      "listItems": [
+        "Provide a simple and intuitive platform for real estate agents to enhance their property photos.",
+        "Automate the photo enhancement process through AI-driven classification and prompting.",
+        "Enable users to manage and compare original and enhanced images.",
+        "Ensure secure and scalable storage for user-uploaded photos.",
+        "Streamline the workflow from photo upload to AI enhancement and final output."
+      ]
+    },
+    {
+      "heading": "3. User Stories",
+      "listItems": [
+        "As a new user, I want to register with my email, password, and company so I can access the photo enhancement features.",
+        "As a user, I want to securely log in to my account to view my photos.",
+        "As a user, I want to be able to upload multiple photos at once, either by dragging and dropping or by clicking to select files.",
+        "As a user, I want the system to validate my uploaded files to ensure they are the correct type (JPG, PNG, WebP) and within the size limits.",
+        "As a user, I want to see the original and enhanced versions of my photos side-by-side on my dashboard.",
+        "As a user, I want to link to, download, or share my enhanced photos to use in my marketing materials.",
+        "As a user, I want my photos to be stored securely in my own private folder."
+      ]
+    },
+    {
+      "heading": "4. Core Features",
+      "subsections": [
+        {
+          "heading": "4.1. User Management",
+          "listItems": [
+            "Registration: Users must register with a valid email, a secure password, and their \"Company\" name.",
+            "Login/Logout: Secure user authentication for accessing the application.",
+            "User Dashboard: A personalized space for each user to manage their photos."
+          ]
+        },
+        {
+          "heading": "4.2. Photo Upload & Processing",
+          "listItems": [
+            "Multi-File Upload UI: A user-friendly interface that supports both drag-and-drop and click-to-upload for multiple images.",
+            "File Validation: The system will validate that uploaded files are one of the following formats: JPG, PNG, or WebP. The system will also enforce a maximum file size limit.",
+            "Automated Classification: Each uploaded photo will be analyzed to be classified into one of three categories:",
+            "1. Outside photo (exterior of a building)",
+            "2. Interior photo of an empty room",
+            "3. Interior photo of a room with clutter"
+          ],
+          "subsections": [
+            {
+              "heading": "AI Enhancement",
+              "listItems": [
+                "The system will use Google Gemini's Nano Banana API for image enhancement.",
+                "A specific prompt will be generated for each photo based on its classification."
+              ],
+              "examplePrompts": [
+                {
+                  "type": "Clutter",
+                  "text": "Update this photo to remove the mess and clutter, retain furniture, and make it look staged."
+                },
+                {
+                  "type": "Empty Room",
+                  "text": "Update this empty room with furniture and decorations to make it look professionally staged."
+                },
+                {
+                  "type": "Exterior",
+                  "text": "Update this photo of a building exterior to improve lighting, color vibrancy, and remove any temporary obstacles."
+                }
+              ],
+              "extraListItem": "Storage & Backup: Both the original and enhanced images will be stored for comparison and access."
+            }
+          ]
+        },
+        {
+          "heading": "4.3. User Dashboard & Gallery",
+          "listItems": [
+            "Grid View Gallery: Photos will be displayed in a gallery view using a responsive grid format.",
+            "Side-by-Side Comparison: For each photo, the user can view the \"before\" (original) and \"after\" (enhanced) versions side-by-side."
+          ],
+          "subsections": [
+            {
+              "heading": "Photo Actions",
+              "listItems": [
+                "Download: Download the enhanced image.",
+                "Link: Get a public link to the enhanced image for sharing.",
+                "Share: Share the image directly to social media or via email."
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "5. Technical Requirements",
+      "subsections": [
+        {
+          "heading": "5.1. Backend",
+          "listItems": [
+            "Framework: A robust backend framework (e.g., Node.js with Express, Python with Django/Flask) will be used to handle business logic.",
+            "Database: A relational or NoSQL database to store user information and photo metadata (e.g., user ID, file path, classification, status).",
+            "File Handling: The backend will receive uploaded files and store them in the designated storage."
+          ]
+        },
+        {
+          "heading": "5.2. Storage",
+          "listItems": [
+            "Provider: Akamai's Linode Object Storage will be used for photo storage.",
+            "Security: On user registration, a dedicated folder will be automatically created. Access control will be configured to ensure only the registered user can view their photos."
+          ],
+          "storagePaths": [
+            "Original Photos: /mnt/photos/originals/<user_id>/<filename>",
+            "Enhanced Photos: /mnt/photos/enhanced/<user_id>/<filename>"
+          ],
+          "extraListItem": "Configuration: All storage credentials and configuration details will be managed in a .env file."
+        },
+        {
+          "heading": "5.3. Frontend",
+          "listItems": [
+            "Technology: HTML, CSS (Tailwind CSS for responsive design), and JavaScript will be used to build a single-page application.",
+            "UI/UX: The interface will be clean, modern, and responsive, ensuring a seamless experience across desktop and mobile devices.",
+            "Image Display: The frontend will fetch images from the static file URLs served from the Linode storage (e.g., https://yourdomain.com/photos/...)."
+          ],
+          "extraListItem": "Interactions: The dashboard will provide interactive elements for downloading, linking, and sharing photos."
+        },
+        {
+          "heading": "5.4. API Integration",
+          "listItems": [
+            "Image AI: The application will integrate with Google Gemini's Nano Banana (gemini-2.5-flash-image-preview) API.",
+            "API Calls: The backend will handle all API calls, securely passing the image data and the dynamically generated prompt."
+          ]
+        }
+      ]
+    },
+    {
+      "heading": "6. Success Metrics",
+      "listItems": [
+        "User Engagement: Number of active users and photos uploaded per user per month.",
+        "Conversion Rate: The percentage of users who upload and successfully enhance at least one photo.",
+        "API Performance: Average latency of the enhancement process.",
+        "User Feedback: Positive feedback from users regarding the quality of the enhanced photos and the ease of use.",
+        "System Uptime: The application's uptime and stability."
+      ]
+    },
+    {
+      "heading": "7. Future Enhancements",
+      "listItems": [
+        "Subscription Models: Introduce tiered pricing for different levels of usage.",
+        "Advanced Editing Tools: Allow users to manually adjust enhancement settings (e.g., color, brightness, contrast).",
+        "Batch Processing: Enable the enhancement of an entire folder or project with a single click.",
+        "Photo Tags: Implement an option for users to manually tag photos to override automated classification."
+      ]
+    }
+  ]
+}

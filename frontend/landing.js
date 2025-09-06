@@ -1,0 +1,529 @@
+// Landing page component
+function renderLanding() {
+  document.getElementById('app').innerHTML = `
+    <!-- Hero Section -->
+    <div class="min-h-screen bg-gradient-to-br from-purple-600 via-blue-600 to-green-500">
+      <!-- Navigation -->
+      <nav class="flex justify-between items-center p-6 text-white">
+        <div class="flex items-center space-x-3">
+          <img src="images/Majic-photo-logo.png" alt="Majic-Photo Logo" class="h-10 w-auto">
+          <h1 class="text-2xl font-bold">Majic-Photo.com</h1>
+        </div>
+        <div class="space-x-4">
+          <button onclick="scrollToSection('features')" class="hover:text-purple-200 transition">Features</button>
+          <button onclick="scrollToSection('pricing')" class="hover:text-purple-200 transition">Pricing</button>
+          <button onclick="scrollToSection('how-it-works')" class="hover:text-purple-200 transition">How It Works</button>
+          <button onclick="showLoginModal()" class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-purple-50 transition">Login</button>
+          <button onclick="showRegisterModal()" class="bg-purple-800 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-900 transition">Get Started</button>
+        </div>
+      </nav>
+
+      <!-- Hero Content -->
+      <div class="container mx-auto px-6 py-20 text-center text-white">
+        <h2 class="text-6xl font-bold mb-6 animate-fade-in">
+          Transform Empty Rooms Into<br/>
+          <span class="text-yellow-300">Stunning Staged Homes</span><br/>
+          In Seconds
+        </h2>
+        <p class="text-xl mb-8 text-purple-100 max-w-3xl mx-auto">
+          AI-powered virtual staging that sells homes 73% faster. Upload your photos, and watch as our cutting-edge AI transforms empty spaces into beautifully furnished rooms that buyers can envision as their dream home.
+        </p>
+        <div class="flex justify-center space-x-4">
+          <button onclick="showRegisterModal()" class="bg-yellow-400 text-purple-900 px-8 py-4 rounded-lg text-lg font-bold hover:bg-yellow-300 transform hover:scale-105 transition shadow-lg">
+            Start Free Trial - No Credit Card Required
+          </button>
+          <button onclick="scrollToSection('demo')" class="bg-white/20 backdrop-blur text-white px-8 py-4 rounded-lg text-lg font-bold hover:bg-white/30 transition">
+            See Examples
+          </button>
+        </div>
+        
+        <!-- Stats -->
+        <div class="grid grid-cols-3 gap-8 mt-16 max-w-4xl mx-auto">
+          <div class="bg-white/10 backdrop-blur rounded-lg p-6">
+            <div class="text-4xl font-bold text-yellow-300">73%</div>
+            <div class="text-sm mt-2">Faster Home Sales</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur rounded-lg p-6">
+            <div class="text-4xl font-bold text-yellow-300">$0.50</div>
+            <div class="text-sm mt-2">Per Photo</div>
+          </div>
+          <div class="bg-white/10 backdrop-blur rounded-lg p-6">
+            <div class="text-4xl font-bold text-yellow-300">30 Sec</div>
+            <div class="text-sm mt-2">Processing Time</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Demo Section -->
+    <div id="demo" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <h3 class="text-4xl font-bold text-center mb-4">See The Magic In Action</h3>
+        <p class="text-center text-gray-600 mb-12 text-lg">Hover over images to see the transformation</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div class="group relative overflow-hidden rounded-lg shadow-xl">
+            <div class="aspect-video relative">
+              <img 
+                src="images/before/living_room_b.jpg" 
+                alt="Empty Living Room" 
+                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+              >
+              <img 
+                src="images/after/living_room.png" 
+                alt="Staged Living Room" 
+                class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              >
+              <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <span class="text-white font-bold text-lg">Beautifully Staged!</span>
+              </div>
+            </div>
+            <div class="p-4 bg-white">
+              <h4 class="font-semibold">Living Room</h4>
+              <p class="text-sm text-gray-600">Modern contemporary staging</p>
+            </div>
+          </div>
+          
+          <div class="group relative overflow-hidden rounded-lg shadow-xl">
+            <div class="aspect-video relative">
+              <img 
+                src="images/before/kitchen_b.jpg" 
+                alt="Empty Kitchen" 
+                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+              >
+              <img 
+                src="images/after/kitchen.png" 
+                alt="Staged Kitchen" 
+                class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              >
+              <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <span class="text-white font-bold text-lg">Ready to Cook!</span>
+              </div>
+            </div>
+            <div class="p-4 bg-white">
+              <h4 class="font-semibold">Kitchen</h4>
+              <p class="text-sm text-gray-600">Styled with modern accessories</p>
+            </div>
+          </div>
+          
+          <div class="group relative overflow-hidden rounded-lg shadow-xl">
+            <div class="aspect-video relative">
+              <img 
+                src="images/before/primary_b.jpg" 
+                alt="Empty Primary Bedroom" 
+                class="absolute inset-0 w-full h-full object-cover transition-opacity duration-500"
+              >
+              <img 
+                src="images/after/primary.png" 
+                alt="Staged Primary Bedroom" 
+                class="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+              >
+              <div class="absolute inset-0 flex items-center justify-center bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                <span class="text-white font-bold text-lg">Cozy & Inviting!</span>
+              </div>
+            </div>
+            <div class="p-4 bg-white">
+              <h4 class="font-semibold">Primary Bedroom</h4>
+              <p class="text-sm text-gray-600">Warm and welcoming design</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <div id="features" class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <h3 class="text-4xl font-bold text-center mb-4">Powerful Features for Real Estate Professionals</h3>
+        <p class="text-center text-gray-600 mb-12 text-lg">Everything you need to showcase properties at their best</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div class="p-6 bg-gradient-to-br from-purple-50 to-blue-50 rounded-lg hover:shadow-lg transition">
+            <div class="w-12 h-12 bg-purple-600 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/>
+              </svg>
+            </div>
+            <h4 class="text-xl font-semibold mb-2">Lightning Fast Processing</h4>
+            <p class="text-gray-600">Get professionally staged photos in under 30 seconds. No waiting, no delays.</p>
+          </div>
+          
+          <div class="p-6 bg-gradient-to-br from-green-50 to-blue-50 rounded-lg hover:shadow-lg transition">
+            <div class="w-12 h-12 bg-green-600 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"/>
+              </svg>
+            </div>
+            <h4 class="text-xl font-semibold mb-2">Property Organization</h4>
+            <p class="text-gray-600">Group photos by property address and room type for easy management.</p>
+          </div>
+          
+          <div class="p-6 bg-gradient-to-br from-yellow-50 to-orange-50 rounded-lg hover:shadow-lg transition">
+            <div class="w-12 h-12 bg-yellow-600 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
+              </svg>
+            </div>
+            <h4 class="text-xl font-semibold mb-2">Smart AI Staging</h4>
+            <p class="text-gray-600">Our AI understands room types and stages appropriately with realistic furniture.</p>
+          </div>
+          
+          <div class="p-6 bg-gradient-to-br from-pink-50 to-purple-50 rounded-lg hover:shadow-lg transition">
+            <div class="w-12 h-12 bg-pink-600 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+              </svg>
+            </div>
+            <h4 class="text-xl font-semibold mb-2">Cost Effective</h4>
+            <p class="text-gray-600">Save thousands compared to physical staging. Pay only for what you use.</p>
+          </div>
+          
+          <div class="p-6 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-lg hover:shadow-lg transition">
+            <div class="w-12 h-12 bg-blue-600 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01"/>
+              </svg>
+            </div>
+            <h4 class="text-xl font-semibold mb-2">Multiple Style Options</h4>
+            <p class="text-gray-600">Choose from modern, traditional, or contemporary staging styles.</p>
+          </div>
+          
+          <div class="p-6 bg-gradient-to-br from-red-50 to-pink-50 rounded-lg hover:shadow-lg transition">
+            <div class="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+              </svg>
+            </div>
+            <h4 class="text-xl font-semibold mb-2">Buyer Psychology</h4>
+            <p class="text-gray-600">Staged homes sell 73% faster and for up to 10% more than empty homes.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- How It Works -->
+    <div id="how-it-works" class="py-20 bg-gray-50">
+      <div class="container mx-auto px-6">
+        <h3 class="text-4xl font-bold text-center mb-4">How It Works</h3>
+        <p class="text-center text-gray-600 mb-12 text-lg">Three simple steps to transform your listings</p>
+        
+        <div class="max-w-4xl mx-auto">
+          <div class="flex flex-col md:flex-row items-center mb-12">
+            <div class="w-20 h-20 bg-purple-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4 md:mb-0 md:mr-8 flex-shrink-0">
+              1
+            </div>
+            <div class="text-center md:text-left">
+              <h4 class="text-2xl font-semibold mb-2">Upload Your Photos</h4>
+              <p class="text-gray-600">Simply drag and drop your empty room photos. Support for JPEG, PNG, and WebP formats. Tag them by property address and room type for easy organization.</p>
+            </div>
+          </div>
+          
+          <div class="flex flex-col md:flex-row items-center mb-12">
+            <div class="w-20 h-20 bg-green-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4 md:mb-0 md:mr-8 flex-shrink-0">
+              2
+            </div>
+            <div class="text-center md:text-left">
+              <h4 class="text-2xl font-semibold mb-2">AI Works Its Magic</h4>
+              <p class="text-gray-600">Our advanced AI analyzes the room, understands the space, and virtually stages it with appropriate furniture and decor in under 30 seconds.</p>
+            </div>
+          </div>
+          
+          <div class="flex flex-col md:flex-row items-center">
+            <div class="w-20 h-20 bg-blue-600 rounded-full flex items-center justify-center text-white text-2xl font-bold mb-4 md:mb-0 md:mr-8 flex-shrink-0">
+              3
+            </div>
+            <div class="text-center md:text-left">
+              <h4 class="text-2xl font-semibold mb-2">Download & Share</h4>
+              <p class="text-gray-600">Download your professionally staged photos instantly. Share them on MLS, social media, or your website to attract more buyers.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Pricing Section -->
+    <div id="pricing" class="py-20 bg-gradient-to-br from-purple-600 to-blue-600 text-white">
+      <div class="container mx-auto px-6">
+        <h3 class="text-4xl font-bold text-center mb-4">Simple, Transparent Pricing</h3>
+        <p class="text-center text-purple-100 mb-12 text-lg">Choose the plan that works for you</p>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <!-- Pay Per Photo -->
+          <div class="bg-white text-gray-800 rounded-lg p-8 hover:shadow-2xl transition transform hover:scale-105">
+            <h4 class="text-2xl font-bold mb-4">Pay As You Go</h4>
+            <div class="text-4xl font-bold mb-2">$0.50</div>
+            <div class="text-gray-600 mb-6">per photo</div>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                No commitment
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Perfect for occasional use
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                All features included
+              </li>
+            </ul>
+            <button onclick="showRegisterModal()" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
+              Get Started
+            </button>
+          </div>
+          
+          <!-- Monthly Plan -->
+          <div class="bg-gradient-to-br from-yellow-400 to-orange-400 text-gray-800 rounded-lg p-8 shadow-2xl transform scale-105 relative">
+            <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-red-500 text-white px-4 py-1 rounded-full text-sm font-bold">
+              MOST POPULAR
+            </div>
+            <h4 class="text-2xl font-bold mb-4">Professional</h4>
+            <div class="text-4xl font-bold mb-2">$49</div>
+            <div class="text-gray-700 mb-6">per month</div>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-700 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <strong>150 photos/month</strong>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-700 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                $0.33 per photo
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-700 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Priority processing
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-700 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Bulk upload tools
+              </li>
+            </ul>
+            <button onclick="showRegisterModal()" class="w-full bg-gray-800 text-white py-3 rounded-lg font-semibold hover:bg-gray-900 transition">
+              Start Free Trial
+            </button>
+          </div>
+          
+          <!-- Annual Plan -->
+          <div class="bg-white text-gray-800 rounded-lg p-8 hover:shadow-2xl transition transform hover:scale-105">
+            <h4 class="text-2xl font-bold mb-4">Enterprise</h4>
+            <div class="text-4xl font-bold mb-2">$399</div>
+            <div class="text-gray-600 mb-6">per year</div>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                <strong>Unlimited photos</strong>
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Save 32% vs monthly
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                API access
+              </li>
+              <li class="flex items-center">
+                <svg class="w-5 h-5 text-green-500 mr-2" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+                </svg>
+                Dedicated support
+              </li>
+            </ul>
+            <button onclick="showRegisterModal()" class="w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition">
+              Contact Sales
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Testimonials -->
+    <div class="py-20 bg-white">
+      <div class="container mx-auto px-6">
+        <h3 class="text-4xl font-bold text-center mb-12">What Real Estate Professionals Say</h3>
+        
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <div class="flex mb-4">
+              ${[...Array(5)].map(() => '<span class="text-yellow-400">★</span>').join('')}
+            </div>
+            <p class="text-gray-600 mb-4">"This tool has transformed my business. I can now show potential in every property, and my listings get 3x more views!"</p>
+            <div class="flex items-center">
+              <div class="w-12 h-12 bg-purple-600 rounded-full mr-3"></div>
+              <div>
+                <div class="font-semibold">Sarah Johnson</div>
+                <div class="text-sm text-gray-500">Real Estate Agent</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <div class="flex mb-4">
+              ${[...Array(5)].map(() => '<span class="text-yellow-400">★</span>').join('')}
+            </div>
+            <p class="text-gray-600 mb-4">"We've saved thousands on staging costs. The AI is incredibly smart and the results look absolutely professional."</p>
+            <div class="flex items-center">
+              <div class="w-12 h-12 bg-green-600 rounded-full mr-3"></div>
+              <div>
+                <div class="font-semibold">Michael Chen</div>
+                <div class="text-sm text-gray-500">Property Developer</div>
+              </div>
+            </div>
+          </div>
+          
+          <div class="bg-gray-50 p-6 rounded-lg">
+            <div class="flex mb-4">
+              ${[...Array(5)].map(() => '<span class="text-yellow-400">★</span>').join('')}
+            </div>
+            <p class="text-gray-600 mb-4">"My staged listings sell 2x faster. Buyers can finally visualize themselves in the space. Game changer!"</p>
+            <div class="flex items-center">
+              <div class="w-12 h-12 bg-blue-600 rounded-full mr-3"></div>
+              <div>
+                <div class="font-semibold">Emily Rodriguez</div>
+                <div class="text-sm text-gray-500">Broker</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Section -->
+    <div class="py-20 bg-gradient-to-r from-purple-600 to-blue-600 text-white">
+      <div class="container mx-auto px-6 text-center">
+        <h3 class="text-4xl font-bold mb-4">Ready to Transform Your Listings?</h3>
+        <p class="text-xl mb-8 text-purple-100">Join thousands of real estate professionals using AI to sell homes faster</p>
+        <button onclick="showRegisterModal()" class="bg-yellow-400 text-purple-900 px-8 py-4 rounded-lg text-lg font-bold hover:bg-yellow-300 transform hover:scale-105 transition shadow-lg">
+          Start Your Free Trial Today
+        </button>
+        <p class="mt-4 text-sm text-purple-200">No credit card required • 10 free photos to start</p>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-8">
+      <div class="container mx-auto px-6">
+        <div class="flex justify-between items-center">
+          <div>
+            <div class="flex items-center space-x-2 mb-2">
+              <img src="images/Majic-photo-logo.png" alt="Majic-Photo Logo" class="h-8 w-auto">
+              <div class="text-xl font-bold">Majic-Photo.com</div>
+            </div>
+            <div class="text-gray-400">© 2025 All rights reserved</div>
+          </div>
+          <div class="space-x-6">
+            <a href="/privacy.html" class="hover:text-purple-400 transition">Privacy Policy</a>
+            <a href="/terms.html" class="hover:text-purple-400 transition">Terms of Service</a>
+            <a href="mailto:support@majic-photo.com" class="hover:text-purple-400 transition">Contact</a>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- Login/Register Modal -->
+    <div id="authModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+      <div class="bg-white rounded-lg p-8 max-w-md w-full mx-4">
+        <div id="authContent">
+          <!-- Content will be inserted here -->
+        </div>
+      </div>
+    </div>
+  `;
+
+  // Add animation styles
+  const style = document.createElement('style');
+  style.textContent = `
+    @keyframes fade-in {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .animate-fade-in {
+      animation: fade-in 1s ease-out;
+    }
+  `;
+  document.head.appendChild(style);
+}
+
+// Modal functions
+function showLoginModal() {
+  const modal = document.getElementById('authModal');
+  const content = document.getElementById('authContent');
+  
+  content.innerHTML = `
+    <h2 class="text-2xl font-bold mb-4">Welcome Back!</h2>
+    <form id="loginForm">
+      <input type="email" id="email" placeholder="Email" class="w-full mb-3 p-3 border rounded-lg focus:border-purple-500 focus:outline-none" required>
+      <input type="password" id="password" placeholder="Password" class="w-full mb-3 p-3 border rounded-lg focus:border-purple-500 focus:outline-none" required>
+      <button type="submit" class="bg-purple-600 text-white p-3 w-full rounded-lg font-semibold hover:bg-purple-700 transition">Login</button>
+    </form>
+    <p class="mt-4 text-center">
+      Don't have an account? 
+      <a href="#" onclick="showRegisterModal(); return false;" class="text-purple-600 hover:underline">Register</a>
+    </p>
+    <button onclick="closeModal()" class="mt-4 text-gray-500 hover:text-gray-700 w-full">Cancel</button>
+  `;
+  
+  modal.classList.remove('hidden');
+  document.getElementById('loginForm').addEventListener('submit', handleLogin);
+}
+
+function showRegisterModal() {
+  const modal = document.getElementById('authModal');
+  const content = document.getElementById('authContent');
+  
+  content.innerHTML = `
+    <h2 class="text-2xl font-bold mb-4">Start Your Free Trial</h2>
+    <p class="text-gray-600 mb-4">Get 10 free photos to test our service!</p>
+    <form id="registerForm">
+      <input type="email" id="email" placeholder="Email" class="w-full mb-3 p-3 border rounded-lg focus:border-purple-500 focus:outline-none" required>
+      <input type="password" id="password" placeholder="Password" class="w-full mb-3 p-3 border rounded-lg focus:border-purple-500 focus:outline-none" required>
+      <input type="text" id="company" placeholder="Company (Optional)" class="w-full mb-3 p-3 border rounded-lg focus:border-purple-500 focus:outline-none">
+      <input type="text" id="registrationCode" placeholder="Registration Code (Optional)" class="w-full mb-3 p-3 border rounded-lg focus:border-purple-500 focus:outline-none" maxlength="32">
+      <div class="text-xs text-gray-500 mb-3">Registration code grants unlimited photo enhancements. Leave blank for 10 free photos.</div>
+      <button type="submit" class="bg-purple-600 text-white p-3 w-full rounded-lg font-semibold hover:bg-purple-700 transition">Create Account</button>
+    </form>
+    <p class="mt-4 text-center">
+      Already have an account? 
+      <a href="#" onclick="showLoginModal(); return false;" class="text-purple-600 hover:underline">Login</a>
+    </p>
+    <button onclick="closeModal()" class="mt-4 text-gray-500 hover:text-gray-700 w-full">Cancel</button>
+  `;
+  
+  modal.classList.remove('hidden');
+  document.getElementById('registerForm').addEventListener('submit', handleRegister);
+}
+
+function closeModal() {
+  document.getElementById('authModal').classList.add('hidden');
+}
+
+function scrollToSection(id) {
+  document.getElementById(id).scrollIntoView({ behavior: 'smooth' });
+}
+
+// Close modal when clicking outside
+document.addEventListener('click', function(event) {
+  const modal = document.getElementById('authModal');
+  if (event.target === modal) {
+    closeModal();
+  }
+});
