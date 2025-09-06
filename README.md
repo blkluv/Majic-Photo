@@ -1,7 +1,8 @@
 # ✨ Magic Photo Service
 
-> Save time, cut costs, and reduce stress with professional, AI-powered product photography.
-> We transform simple white background images into captivating, ready-to-use photos without the hassle of a traditional photoshoot.
+> Save time, cut costs, and reduce stress with professional, AI-powered Real Estate photography.
+> We transform simple Real Estate images into captivating, ready-to-use photos without the hassle of a traditional photoshoot.
+> Sign up today to receive 10 free AI photo enhancements.  https://majic-photo.com/
 
 [![GitHub stars](https://img.shields.io/github/stars/jleboube/Majic-Photo?style=social)](https://github.com/jleboube/Majic-Photo/stargazers)
 [![GitHub forks](https://img.shields.io/github/forks/jleboube/Majic-Photo?style=social)](https://github.com/jleboube/Majic-Photo/network/members)
@@ -12,13 +13,13 @@
 
 ---
 
-## 🚩 The Problem with Product Photography
+## 🚩 The Problem with Real Estate Photography
 
 - ⏱ **Time Wasting**
   Traditional photoshoots require extensive planning, logistics, location scouting, and post-production, leading to long delays.
 
 - 💰 **High Cost**
-  Physical productions involve significant expenses for studio rentals, equipment, props, and personnel, making professional photography inaccessible for many.
+  Real Estate staging services can cost anywhere from $1,500 - $5,000.  Reduce these significant expenses for staging, making professional Real Estate photography inaccessible for many.
 
 - ⚙️ **Complex Process**
   Hiring photographers and editing images requires specialized skills and coordination, adding complexity and stress to your workflow.
@@ -31,26 +32,26 @@
   Instantly create stunning visuals by transforming your existing product photos with generative AI.
 
 - 🎨 **Full Customization**
-  Provide your brief, and our AI will generate images that match your desired aesthetic, lighting, and scene.
+  Provide your photo, and our AI will generate images that match your desired aesthetic, lighting, and scene.
 
 - 🚀 **Lightning Fast Turnaround**
   Achieve your ideal photoshoot faster than ever, with final images delivered in a fraction of the time of a traditional production.
 
 - 🌐 **Seamless & Simple**
-  Just upload your product photo and a brief. We handle every step to deliver a polished, custom final image.
+  Just upload your product photo. We handle every step to deliver a polished, custom final image. We even allow you to reprocess the image if you don't like it.
 
 ---
 
 ## ⚙️ How It Works
 
 1.  **Provide Product Photo**
-    Upload a simple white background image of your product.
+    Upload a Real Estate image of your home or room in your home.
 
 2.  **Submit Your Brief**
-    Specify the subjects, lighting, atmosphere, and even the shot angle you envision.
+    Specify the site address and room image is assigned to.
 
-3.  **Receive Your Final Image**
-    Our AI-powered creative service generates a professional, ready-to-use photo that meets your brief.
+3.  **Receive Your Enhanced Image**
+    Our AI-powered creative service generates a professional, ready-to-use photo that meets your needs.  We even allow you to reprocess the image if you don't like it.
 
 ---
 
@@ -70,9 +71,9 @@
 
 ---
 
-## 🚀 Ready to Transform Your Product Visuals?
+## 🚀 Ready to Transform Your Real Estate Photos?
 
-Join thousands of businesses that have already streamlined their product photography with our professional AI service.
+Join thousands of Realtors that have already streamlined their product photography with our professional AI service.
 
 ---
 
