@@ -1,0 +1,796 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>API Documentation - Majic-Photo.com</title>
+  <meta name="description" content="Complete API documentation for integrating Majic-Photo.com's AI-powered real estate photo staging into your applications.">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism-tomorrow.min.css">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-json.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-bash.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-javascript.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
+</head>
+<body class="bg-gray-100">
+  <div class="container mx-auto px-4 py-8 max-w-6xl">
+    <!-- Header -->
+    <div class="bg-gradient-to-r from-purple-600 to-blue-600 text-white p-8 rounded-t-lg">
+      <div class="flex justify-between items-center">
+        <a href="/" class="flex items-center space-x-3 hover:opacity-90 transition">
+          <img src="/images/Majic-photo-logo.png" alt="Majic-Photo Logo" class="h-10 w-auto">
+          <span class="text-2xl font-bold">Majic-Photo.com</span>
+        </a>
+        <a href="/" class="text-white hover:opacity-90 transition">← Back to Home</a>
+      </div>
+    </div>
+
+    <!-- Content -->
+    <div class="bg-white p-8 rounded-b-lg shadow-lg">
+      <h1 class="text-3xl font-bold mb-6 text-gray-800">API Documentation</h1>
+      <p class="text-gray-600 mb-8 text-lg">Integrate AI-powered real estate photo staging directly into your applications.</p>
+
+      <!-- Table of Contents -->
+      <div class="bg-blue-50 p-6 rounded-lg mb-8">
+        <h2 class="text-xl font-semibold mb-4 text-gray-800">Quick Navigation</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-2">
+          <a href="#getting-started" class="text-blue-600 hover:underline">Getting Started</a>
+          <a href="#authentication" class="text-blue-600 hover:underline">Authentication</a>
+          <a href="#rate-limits" class="text-blue-600 hover:underline">Rate Limits & Credits</a>
+          <a href="#endpoints" class="text-blue-600 hover:underline">API Endpoints</a>
+          <a href="#photo-upload" class="text-blue-600 hover:underline">Photo Upload & Processing</a>
+          <a href="#list-photos" class="text-blue-600 hover:underline">List Photos</a>
+          <a href="#reprocess" class="text-blue-600 hover:underline">Reprocess Photos</a>
+          <a href="#user-info" class="text-blue-600 hover:underline">User Information</a>
+          <a href="#examples" class="text-blue-600 hover:underline">Code Examples</a>
+          <a href="#errors" class="text-blue-600 hover:underline">Error Handling</a>
+        </div>
+      </div>
+
+      <!-- Getting Started -->
+      <section id="getting-started" class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800 border-b-2 border-purple-200 pb-2">Getting Started</h2>
+        
+        <div class="space-y-6">
+          <div class="bg-gray-50 p-4 rounded-lg">
+            <h3 class="font-medium text-gray-700 mb-3">Base URL</h3>
+            <code class="bg-gray-800 text-green-400 px-3 py-1 rounded">https://majic-photo.com/api</code>
+          </div>
+
+          <div>
+            <h3 class="font-medium text-gray-700 mb-3">Quick Start Steps</h3>
+            <ol class="list-decimal list-inside space-y-2 text-gray-600 ml-4">
+              <li>Register for an account at <a href="https://majic-photo.com" class="text-blue-600 hover:underline">majic-photo.com</a></li>
+              <li>Obtain your JWT token via the login endpoint</li>
+              <li>Include the token in all API requests</li>
+              <li>Upload photos for AI processing</li>
+              <li>Retrieve your enhanced photos</li>
+            </ol>
+          </div>
+
+          <div class="bg-yellow-50 p-4 rounded-lg">
+            <h4 class="font-medium text-yellow-700 mb-2">⚠️ Important Notes</h4>
+            <ul class="list-disc list-inside space-y-1 text-sm text-yellow-600 ml-4">
+              <li>All requests must include a valid JWT token</li>
+              <li>Free accounts are limited to 10 photo enhancements</li>
+              <li>Registration codes provide unlimited access</li>
+              <li>API responses are in JSON format</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- Authentication -->
+      <section id="authentication" class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800 border-b-2 border-purple-200 pb-2">Authentication</h2>
+        
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-medium mb-3 text-gray-700">Register</h3>
+            <div class="bg-gray-900 rounded-lg p-4 mb-4">
+              <pre><code class="language-bash">POST /api/auth/register
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "securePassword123",
+  "company": "ABC Realty",
+  "registrationCode": "optional32charhexcode"
+}</code></pre>
+            </div>
+            
+            <p class="text-sm text-gray-600 mb-3">Response:</p>
+            <div class="bg-gray-900 rounded-lg p-4">
+              <pre><code class="language-json">{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...",
+  "msg": "User registered successfully"
+}</code></pre>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-medium mb-3 text-gray-700">Login</h3>
+            <div class="bg-gray-900 rounded-lg p-4 mb-4">
+              <pre><code class="language-bash">POST /api/auth/login
+Content-Type: application/json
+
+{
+  "email": "user@example.com",
+  "password": "securePassword123"
+}</code></pre>
+            </div>
+            
+            <p class="text-sm text-gray-600 mb-3">Response:</p>
+            <div class="bg-gray-900 rounded-lg p-4">
+              <pre><code class="language-json">{
+  "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9..."
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="bg-blue-50 p-4 rounded-lg">
+            <h4 class="font-medium text-blue-700 mb-2">🔐 Using Your Token</h4>
+            <p class="text-sm text-blue-600 mb-2">Include the JWT token in all authenticated requests:</p>
+            <code class="bg-blue-100 text-blue-800 px-2 py-1 rounded text-sm">Authorization: Bearer YOUR_JWT_TOKEN</code>
+          </div>
+        </div>
+      </section>
+
+      <!-- Rate Limits -->
+      <section id="rate-limits" class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800 border-b-2 border-purple-200 pb-2">Rate Limits & Credits</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div class="bg-green-50 p-4 rounded-lg">
+            <h3 class="font-medium text-green-700 mb-3">Free Tier</h3>
+            <ul class="list-disc list-inside space-y-1 text-sm text-green-600">
+              <li>10 photo enhancements total</li>
+              <li>Includes initial processing and reprocessing</li>
+              <li>No time-based expiration</li>
+              <li>Perfect for testing</li>
+            </ul>
+          </div>
+
+          <div class="bg-purple-50 p-4 rounded-lg">
+            <h3 class="font-medium text-purple-700 mb-3">Unlimited (Registration Code)</h3>
+            <ul class="list-disc list-inside space-y-1 text-sm text-purple-600">
+              <li>Unlimited photo enhancements</li>
+              <li>No daily or monthly limits</li>
+              <li>Priority processing</li>
+              <li>Full API access</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="mt-6 bg-gray-50 p-4 rounded-lg">
+          <h4 class="font-medium text-gray-700 mb-2">Check Your Credits</h4>
+          <div class="bg-gray-900 rounded-lg p-4">
+            <pre><code class="language-bash">GET /api/auth/me
+Authorization: Bearer YOUR_JWT_TOKEN</code></pre>
+          </div>
+        </div>
+      </section>
+
+      <!-- API Endpoints -->
+      <section id="endpoints" class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800 border-b-2 border-purple-200 pb-2">API Endpoints</h2>
+        
+        <div class="overflow-x-auto">
+          <table class="min-w-full divide-y divide-gray-200">
+            <thead class="bg-gray-50">
+              <tr>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Method</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Endpoint</th>
+                <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+              </tr>
+            </thead>
+            <tbody class="bg-white divide-y divide-gray-200">
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm"><span class="bg-green-100 text-green-800 px-2 py-1 rounded">POST</span></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-mono">/auth/register</td>
+                <td class="px-6 py-4 text-sm text-gray-600">Create new account</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm"><span class="bg-green-100 text-green-800 px-2 py-1 rounded">POST</span></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-mono">/auth/login</td>
+                <td class="px-6 py-4 text-sm text-gray-600">Authenticate and get token</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded">GET</span></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-mono">/auth/me</td>
+                <td class="px-6 py-4 text-sm text-gray-600">Get user info and credits</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm"><span class="bg-green-100 text-green-800 px-2 py-1 rounded">POST</span></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-mono">/photos/process</td>
+                <td class="px-6 py-4 text-sm text-gray-600">Upload and process photos</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded">GET</span></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-mono">/photos</td>
+                <td class="px-6 py-4 text-sm text-gray-600">List all user photos</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm"><span class="bg-green-100 text-green-800 px-2 py-1 rounded">POST</span></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-mono">/photos/reprocess/:id</td>
+                <td class="px-6 py-4 text-sm text-gray-600">Reprocess with custom prompt</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm"><span class="bg-orange-100 text-orange-800 px-2 py-1 rounded">PUT</span></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-mono">/photos/tags</td>
+                <td class="px-6 py-4 text-sm text-gray-600">Update photo tags</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded">GET</span></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-mono">/photos/addresses</td>
+                <td class="px-6 py-4 text-sm text-gray-600">Get unique addresses</td>
+              </tr>
+              <tr>
+                <td class="px-6 py-4 whitespace-nowrap text-sm"><span class="bg-blue-100 text-blue-800 px-2 py-1 rounded">GET</span></td>
+                <td class="px-6 py-4 whitespace-nowrap text-sm font-mono">/photos/rooms</td>
+                <td class="px-6 py-4 text-sm text-gray-600">Get unique room names</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Photo Upload -->
+      <section id="photo-upload" class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800 border-b-2 border-purple-200 pb-2">Photo Upload & Processing</h2>
+        
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-medium mb-3 text-gray-700">Upload and Process Photos</h3>
+            <p class="text-gray-600 mb-4">Submit photos for AI staging. Supports batch processing up to 10 photos at once.</p>
+            
+            <div class="bg-gray-900 rounded-lg p-4 mb-4">
+              <pre><code class="language-bash">POST /api/photos/process
+Authorization: Bearer YOUR_JWT_TOKEN
+Content-Type: multipart/form-data
+
+Form Data:
+- photos: (file) image1.jpg
+- photos: (file) image2.jpg
+- propertyAddress: "123 Main St, City, State 12345"
+- roomName: "Living Room"</code></pre>
+            </div>
+
+            <p class="text-sm text-gray-600 mb-3">Response:</p>
+            <div class="bg-gray-900 rounded-lg p-4">
+              <pre><code class="language-json">{
+  "msg": "2 photos submitted for AI processing",
+  "photos": [
+    {
+      "_id": "65a1b2c3d4e5f6g7h8i9j0k1",
+      "userId": "user123",
+      "originalPath": "original/user123/timestamp-image1.jpg",
+      "enhancedPath": null,
+      "originalUrl": "https://storage.url/original.jpg",
+      "enhancedUrl": null,
+      "classification": "empty_interior",
+      "status": "processing",
+      "propertyAddress": "123 Main St, City, State 12345",
+      "roomName": "Living Room",
+      "apiCallsMade": 1
+    }
+  ]
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="bg-blue-50 p-4 rounded-lg">
+            <h4 class="font-medium text-blue-700 mb-2">📝 Field Descriptions</h4>
+            <ul class="list-disc list-inside space-y-1 text-sm text-blue-600 ml-4">
+              <li><strong>photos:</strong> Image files (JPG, PNG, WebP) up to 10MB each</li>
+              <li><strong>propertyAddress:</strong> Full property address for organization</li>
+              <li><strong>roomName:</strong> Room type (helps AI choose appropriate furniture)</li>
+              <li><strong>status:</strong> "processing", "done", or "error"</li>
+              <li><strong>classification:</strong> "exterior", "empty_interior", or "cluttered_interior"</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- List Photos -->
+      <section id="list-photos" class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800 border-b-2 border-purple-200 pb-2">List Photos</h2>
+        
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-medium mb-3 text-gray-700">Get All User Photos</h3>
+            <p class="text-gray-600 mb-4">Retrieve all photos for the authenticated user, including processing status and URLs.</p>
+            
+            <div class="bg-gray-900 rounded-lg p-4 mb-4">
+              <pre><code class="language-bash">GET /api/photos
+Authorization: Bearer YOUR_JWT_TOKEN</code></pre>
+            </div>
+
+            <p class="text-sm text-gray-600 mb-3">Response:</p>
+            <div class="bg-gray-900 rounded-lg p-4">
+              <pre><code class="language-json">[
+  {
+    "_id": "65a1b2c3d4e5f6g7h8i9j0k1",
+    "userId": "user123",
+    "originalPath": "original/user123/timestamp-image1.jpg",
+    "enhancedPath": "enhanced/user123/timestamp-image1.png",
+    "originalUrl": "https://storage.url/original.jpg",
+    "enhancedUrl": "https://storage.url/enhanced.png",
+    "classification": "empty_interior",
+    "status": "done",
+    "propertyAddress": "123 Main St, City, State 12345",
+    "roomName": "Living Room",
+    "apiCallsMade": 1,
+    "createdAt": "2024-01-15T10:30:00Z"
+  }
+]</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Reprocess -->
+      <section id="reprocess" class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800 border-b-2 border-purple-200 pb-2">Reprocess Photos</h2>
+        
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-medium mb-3 text-gray-700">Reprocess with Custom Prompt</h3>
+            <p class="text-gray-600 mb-4">Reprocess an existing photo with custom instructions for different styling.</p>
+            
+            <div class="bg-gray-900 rounded-lg p-4 mb-4">
+              <pre><code class="language-bash">POST /api/photos/reprocess/65a1b2c3d4e5f6g7h8i9j0k1
+Authorization: Bearer YOUR_JWT_TOKEN
+Content-Type: application/json
+
+{
+  "customPrompt": "Add modern minimalist furniture with white and grey colors",
+  "sourceImage": "original"  // or "enhanced"
+}</code></pre>
+            </div>
+
+            <p class="text-sm text-gray-600 mb-3">Response:</p>
+            <div class="bg-gray-900 rounded-lg p-4">
+              <pre><code class="language-json">{
+  "msg": "Photo reprocessed successfully",
+  "photo": {
+    "_id": "65a1b2c3d4e5f6g7h8i9j0k1",
+    "enhancedPath": "enhanced/user123/timestamp-reprocessed-image1.png",
+    "enhancedUrl": "https://storage.url/enhanced-new.png",
+    "status": "done",
+    "apiCallsMade": 2
+  }
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="bg-purple-50 p-4 rounded-lg">
+            <h4 class="font-medium text-purple-700 mb-2">💡 Custom Prompt Tips</h4>
+            <ul class="list-disc list-inside space-y-1 text-sm text-purple-600 ml-4">
+              <li>Be specific about furniture styles and colors</li>
+              <li>Mention room purpose if different from original</li>
+              <li>Use "original" source to start fresh</li>
+              <li>Use "enhanced" source for minor adjustments</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- User Info -->
+      <section id="user-info" class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800 border-b-2 border-purple-200 pb-2">User Information</h2>
+        
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-medium mb-3 text-gray-700">Get Account Details</h3>
+            <p class="text-gray-600 mb-4">Retrieve user account information including credit balance.</p>
+            
+            <div class="bg-gray-900 rounded-lg p-4 mb-4">
+              <pre><code class="language-bash">GET /api/auth/me
+Authorization: Bearer YOUR_JWT_TOKEN</code></pre>
+            </div>
+
+            <p class="text-sm text-gray-600 mb-3">Response:</p>
+            <div class="bg-gray-900 rounded-lg p-4">
+              <pre><code class="language-json">{
+  "id": "user123",
+  "email": "user@example.com",
+  "company": "ABC Realty",
+  "photoCredits": 10,
+  "photosEnhanced": 3,
+  "remainingCredits": 7,
+  "isUnlimited": false,
+  "hasRegistrationCode": false
+}</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Code Examples -->
+      <section id="examples" class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800 border-b-2 border-purple-200 pb-2">Code Examples</h2>
+        
+        <div class="space-y-6">
+          <!-- JavaScript Example -->
+          <div>
+            <h3 class="text-lg font-medium mb-3 text-gray-700">JavaScript / Node.js</h3>
+            <div class="bg-gray-900 rounded-lg p-4">
+              <pre><code class="language-javascript">const FormData = require('form-data');
+const fs = require('fs');
+const axios = require('axios');
+
+// Configuration
+const API_BASE = 'https://majic-photo.com/api';
+const JWT_TOKEN = 'your_jwt_token_here';
+
+// Login and get token
+async function login(email, password) {
+  const response = await axios.post(`${API_BASE}/auth/login`, {
+    email,
+    password
+  });
+  return response.data.token;
+}
+
+// Upload and process photos
+async function processPhotos(imagePaths, propertyAddress, roomName) {
+  const formData = new FormData();
+  
+  // Add multiple photos
+  imagePaths.forEach(path => {
+    formData.append('photos', fs.createReadStream(path));
+  });
+  
+  // Add metadata
+  formData.append('propertyAddress', propertyAddress);
+  formData.append('roomName', roomName);
+  
+  const response = await axios.post(
+    `${API_BASE}/photos/process`,
+    formData,
+    {
+      headers: {
+        ...formData.getHeaders(),
+        'Authorization': `Bearer ${JWT_TOKEN}`
+      }
+    }
+  );
+  
+  return response.data;
+}
+
+// Check photo status
+async function getPhotos() {
+  const response = await axios.get(`${API_BASE}/photos`, {
+    headers: {
+      'Authorization': `Bearer ${JWT_TOKEN}`
+    }
+  });
+  return response.data;
+}
+
+// Example usage
+async function main() {
+  try {
+    // Login
+    const token = await login('user@example.com', 'password123');
+    
+    // Process photos
+    const result = await processPhotos(
+      ['room1.jpg', 'room2.jpg'],
+      '123 Main St, City, State 12345',
+      'Living Room'
+    );
+    
+    console.log('Photos submitted:', result);
+    
+    // Check status after 30 seconds
+    setTimeout(async () => {
+      const photos = await getPhotos();
+      console.log('Processed photos:', photos);
+    }, 30000);
+    
+  } catch (error) {
+    console.error('Error:', error.response?.data || error.message);
+  }
+}
+
+main();</code></pre>
+            </div>
+          </div>
+
+          <!-- Python Example -->
+          <div>
+            <h3 class="text-lg font-medium mb-3 text-gray-700">Python</h3>
+            <div class="bg-gray-900 rounded-lg p-4">
+              <pre><code class="language-python">import requests
+import time
+
+# Configuration
+API_BASE = 'https://majic-photo.com/api'
+JWT_TOKEN = None
+
+def login(email, password):
+    """Authenticate and get JWT token"""
+    response = requests.post(f'{API_BASE}/auth/login', json={
+        'email': email,
+        'password': password
+    })
+    response.raise_for_status()
+    return response.json()['token']
+
+def process_photos(image_paths, property_address, room_name):
+    """Upload and process photos"""
+    files = []
+    for path in image_paths:
+        files.append(('photos', open(path, 'rb')))
+    
+    data = {
+        'propertyAddress': property_address,
+        'roomName': room_name
+    }
+    
+    headers = {
+        'Authorization': f'Bearer {JWT_TOKEN}'
+    }
+    
+    response = requests.post(
+        f'{API_BASE}/photos/process',
+        files=files,
+        data=data,
+        headers=headers
+    )
+    response.raise_for_status()
+    return response.json()
+
+def get_photos():
+    """Get all user photos"""
+    headers = {
+        'Authorization': f'Bearer {JWT_TOKEN}'
+    }
+    response = requests.get(f'{API_BASE}/photos', headers=headers)
+    response.raise_for_status()
+    return response.json()
+
+def reprocess_photo(photo_id, custom_prompt, source='enhanced'):
+    """Reprocess a photo with custom prompt"""
+    headers = {
+        'Authorization': f'Bearer {JWT_TOKEN}',
+        'Content-Type': 'application/json'
+    }
+    response = requests.post(
+        f'{API_BASE}/photos/reprocess/{photo_id}',
+        json={
+            'customPrompt': custom_prompt,
+            'sourceImage': source
+        },
+        headers=headers
+    )
+    response.raise_for_status()
+    return response.json()
+
+# Example usage
+if __name__ == '__main__':
+    # Login
+    JWT_TOKEN = login('user@example.com', 'password123')
+    print(f'Logged in successfully')
+    
+    # Process photos
+    result = process_photos(
+        ['room1.jpg', 'room2.jpg'],
+        '123 Main St, City, State 12345',
+        'Living Room'
+    )
+    print(f'Photos submitted: {result["msg"]}')
+    
+    # Wait for processing
+    time.sleep(30)
+    
+    # Get processed photos
+    photos = get_photos()
+    for photo in photos:
+        if photo['status'] == 'done':
+            print(f'Photo ready: {photo["enhancedUrl"]}')
+    
+    # Reprocess with custom prompt
+    if photos:
+        reprocess_result = reprocess_photo(
+            photos[0]['_id'],
+            'Add luxury modern furniture with gold accents',
+            'original'
+        )
+        print(f'Reprocessed: {reprocess_result["msg"]}')</code></pre>
+            </div>
+          </div>
+
+          <!-- cURL Example -->
+          <div>
+            <h3 class="text-lg font-medium mb-3 text-gray-700">cURL / Command Line</h3>
+            <div class="bg-gray-900 rounded-lg p-4">
+              <pre><code class="language-bash"># Login and save token
+TOKEN=$(curl -s -X POST https://majic-photo.com/api/auth/login \
+  -H "Content-Type: application/json" \
+  -d '{"email":"user@example.com","password":"password123"}' \
+  | jq -r '.token')
+
+# Upload and process photos
+curl -X POST https://majic-photo.com/api/photos/process \
+  -H "Authorization: Bearer $TOKEN" \
+  -F "photos=@room1.jpg" \
+  -F "photos=@room2.jpg" \
+  -F "propertyAddress=123 Main St, City, State 12345" \
+  -F "roomName=Living Room"
+
+# Get all photos
+curl -X GET https://majic-photo.com/api/photos \
+  -H "Authorization: Bearer $TOKEN"
+
+# Reprocess a photo
+curl -X POST https://majic-photo.com/api/photos/reprocess/PHOTO_ID \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "customPrompt": "Add modern furniture with warm colors",
+    "sourceImage": "original"
+  }'
+
+# Check user credits
+curl -X GET https://majic-photo.com/api/auth/me \
+  -H "Authorization: Bearer $TOKEN"</code></pre>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Error Handling -->
+      <section id="errors" class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800 border-b-2 border-purple-200 pb-2">Error Handling</h2>
+        
+        <div class="space-y-6">
+          <div>
+            <h3 class="text-lg font-medium mb-3 text-gray-700">Common Error Responses</h3>
+            
+            <div class="overflow-x-auto">
+              <table class="min-w-full divide-y divide-gray-200">
+                <thead class="bg-gray-50">
+                  <tr>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Status Code</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Error</th>
+                    <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Description</th>
+                  </tr>
+                </thead>
+                <tbody class="bg-white divide-y divide-gray-200">
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm"><span class="bg-red-100 text-red-800 px-2 py-1 rounded">400</span></td>
+                    <td class="px-6 py-4 text-sm font-mono">Bad Request</td>
+                    <td class="px-6 py-4 text-sm text-gray-600">Invalid input or missing required fields</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm"><span class="bg-red-100 text-red-800 px-2 py-1 rounded">401</span></td>
+                    <td class="px-6 py-4 text-sm font-mono">Unauthorized</td>
+                    <td class="px-6 py-4 text-sm text-gray-600">Invalid or missing JWT token</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm"><span class="bg-red-100 text-red-800 px-2 py-1 rounded">403</span></td>
+                    <td class="px-6 py-4 text-sm font-mono">Forbidden</td>
+                    <td class="px-6 py-4 text-sm text-gray-600">Photo credit limit exceeded</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm"><span class="bg-red-100 text-red-800 px-2 py-1 rounded">404</span></td>
+                    <td class="px-6 py-4 text-sm font-mono">Not Found</td>
+                    <td class="px-6 py-4 text-sm text-gray-600">Resource not found</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm"><span class="bg-red-100 text-red-800 px-2 py-1 rounded">413</span></td>
+                    <td class="px-6 py-4 text-sm font-mono">Payload Too Large</td>
+                    <td class="px-6 py-4 text-sm text-gray-600">Image file exceeds 10MB limit</td>
+                  </tr>
+                  <tr>
+                    <td class="px-6 py-4 whitespace-nowrap text-sm"><span class="bg-red-100 text-red-800 px-2 py-1 rounded">500</span></td>
+                    <td class="px-6 py-4 text-sm font-mono">Server Error</td>
+                    <td class="px-6 py-4 text-sm text-gray-600">Internal server error - contact support</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-lg font-medium mb-3 text-gray-700">Error Response Format</h3>
+            <div class="bg-gray-900 rounded-lg p-4">
+              <pre><code class="language-json">{
+  "msg": "You have reached your photo enhancement limit",
+  "creditsUsed": 10,
+  "creditsTotal": 10,
+  "creditsRemaining": 0
+}</code></pre>
+            </div>
+          </div>
+
+          <div class="bg-orange-50 p-4 rounded-lg">
+            <h4 class="font-medium text-orange-700 mb-2">🔧 Troubleshooting Tips</h4>
+            <ul class="list-disc list-inside space-y-1 text-sm text-orange-600 ml-4">
+              <li><strong>401 Errors:</strong> Check token expiration (1 hour) and refresh by logging in again</li>
+              <li><strong>403 Errors:</strong> Verify credit balance with GET /api/auth/me</li>
+              <li><strong>413 Errors:</strong> Compress images before upload or reduce resolution</li>
+              <li><strong>Processing delays:</strong> Allow 30-60 seconds for AI processing</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- SDK & Libraries -->
+      <section id="sdks" class="mb-12">
+        <h2 class="text-2xl font-semibold mb-4 text-gray-800 border-b-2 border-purple-200 pb-2">SDKs & Libraries</h2>
+        
+        <div class="bg-gray-50 p-6 rounded-lg">
+          <h3 class="font-medium text-gray-700 mb-3">Coming Soon</h3>
+          <p class="text-gray-600 mb-4">Official SDKs for popular languages are in development:</p>
+          <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div class="bg-white p-3 rounded text-center">
+              <span class="text-2xl">📦</span>
+              <p class="text-sm text-gray-600 mt-1">npm package</p>
+            </div>
+            <div class="bg-white p-3 rounded text-center">
+              <span class="text-2xl">🐍</span>
+              <p class="text-sm text-gray-600 mt-1">Python pip</p>
+            </div>
+            <div class="bg-white p-3 rounded text-center">
+              <span class="text-2xl">💎</span>
+              <p class="text-sm text-gray-600 mt-1">Ruby gem</p>
+            </div>
+            <div class="bg-white p-3 rounded text-center">
+              <span class="text-2xl">📱</span>
+              <p class="text-sm text-gray-600 mt-1">PHP composer</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Support -->
+      <div class="bg-gradient-to-r from-purple-50 to-blue-50 p-6 rounded-lg mt-12">
+        <h2 class="text-xl font-semibold mb-4 text-gray-800">API Support</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div>
+            <h3 class="font-medium text-gray-700 mb-2">📧 Email Support</h3>
+            <p class="text-sm text-gray-600">
+              <a href="mailto:api@majic-photo.com" class="text-blue-600 hover:underline">api@majic-photo.com</a>
+            </p>
+          </div>
+          <div>
+            <h3 class="font-medium text-gray-700 mb-2">📚 Documentation</h3>
+            <p class="text-sm text-gray-600">
+              <a href="/user-guide.html" class="text-blue-600 hover:underline">User Guide</a> • 
+              <a href="/api-docs.html" class="text-blue-600 hover:underline">API Docs</a>
+            </p>
+          </div>
+          <div>
+            <h3 class="font-medium text-gray-700 mb-2">🚀 Status Page</h3>
+            <p class="text-sm text-gray-600">
+              <a href="https://status.majic-photo.com" class="text-blue-600 hover:underline">status.majic-photo.com</a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="mt-8 text-center text-gray-600">
+      <p>&copy; 2025 Majic-Photo.com. All rights reserved.</p>
+      <div class="mt-4 space-x-4">
+        <a href="/api-docs.html" class="hover:text-purple-600 transition">API Docs</a>
+        <span>•</span>
+        <a href="/user-guide.html" class="hover:text-purple-600 transition">User Guide</a>
+        <span>•</span>
+        <a href="/terms.html" class="hover:text-purple-600 transition">Terms of Service</a>
+        <span>•</span>
+        <a href="/privacy.html" class="hover:text-purple-600 transition">Privacy Policy</a>
+        <span>•</span>
+        <a href="/" class="hover:text-purple-600 transition">Home</a>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

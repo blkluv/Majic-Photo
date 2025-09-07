@@ -4,17 +4,19 @@ function renderLanding() {
     <!-- Hero Section -->
     <div class="min-h-screen bg-gradient-to-br from-purple-600 via-blue-600 to-green-500">
       <!-- Navigation -->
-      <nav class="flex justify-between items-center p-6 text-white">
+      <nav class="flex flex-col lg:flex-row lg:justify-between lg:items-center p-6 text-white space-y-4 lg:space-y-0">
         <div class="flex items-center space-x-3">
           <img src="images/Majic-photo-logo.png" alt="Majic-Photo Logo" class="h-10 w-auto">
-          <h1 class="text-2xl font-bold">Majic-Photo.com</h1>
+          <h1 class="text-xl sm:text-2xl font-bold">Majic-Photo.com</h1>
         </div>
-        <div class="space-x-4">
-          <button onclick="scrollToSection('features')" class="hover:text-purple-200 transition">Features</button>
-          <button onclick="scrollToSection('pricing')" class="hover:text-purple-200 transition">Pricing</button>
-          <button onclick="scrollToSection('how-it-works')" class="hover:text-purple-200 transition">How It Works</button>
-          <button onclick="showLoginModal()" class="bg-white text-purple-600 px-4 py-2 rounded-lg font-semibold hover:bg-purple-50 transition">Login</button>
-          <button onclick="showRegisterModal()" class="bg-purple-800 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-900 transition">Get Started</button>
+        <div class="flex flex-wrap items-center gap-2 sm:gap-4">
+          <button onclick="scrollToSection('features')" class="hover:text-purple-200 transition text-sm sm:text-base">Features</button>
+          <button onclick="scrollToSection('pricing')" class="hover:text-purple-200 transition text-sm sm:text-base">Pricing</button>
+          <button onclick="scrollToSection('how-it-works')" class="hover:text-purple-200 transition text-sm sm:text-base hidden sm:inline">How It Works</button>
+          <a href="/user-guide.html" class="hover:text-purple-200 transition text-sm sm:text-base">Guide</a>
+          <a href="/api-docs.html" class="hover:text-purple-200 transition text-sm sm:text-base">API</a>
+          <button onclick="showLoginModal()" class="bg-white text-purple-600 px-3 py-1 sm:px-4 sm:py-2 rounded-lg font-semibold hover:bg-purple-50 transition text-sm sm:text-base">Login</button>
+          <button onclick="showRegisterModal()" class="bg-purple-800 text-white px-3 py-1 sm:px-4 sm:py-2 rounded-lg font-semibold hover:bg-purple-900 transition text-sm sm:text-base">Get Started</button>
         </div>
       </nav>
 
@@ -462,17 +464,19 @@ function renderLanding() {
     <!-- Footer -->
     <footer class="bg-gray-800 text-white py-8">
       <div class="container mx-auto px-6">
-        <div class="flex justify-between items-center">
-          <div>
-            <div class="flex items-center space-x-2 mb-2">
+        <div class="flex flex-col lg:flex-row lg:justify-between lg:items-center space-y-4 lg:space-y-0">
+          <div class="text-center lg:text-left">
+            <div class="flex items-center justify-center lg:justify-start space-x-2 mb-2">
               <img src="images/Majic-photo-logo.png" alt="Majic-Photo Logo" class="h-8 w-auto">
               <div class="text-xl font-bold">Majic-Photo.com</div>
             </div>
             <div class="text-gray-400">© 2025 All rights reserved</div>
           </div>
-          <div class="space-x-6">
-            <a href="/privacy.html" class="hover:text-purple-400 transition">Privacy Policy</a>
-            <a href="/terms.html" class="hover:text-purple-400 transition">Terms of Service</a>
+          <div class="flex flex-wrap justify-center lg:justify-end gap-2 sm:gap-4 lg:gap-6 text-sm sm:text-base">
+            <a href="/user-guide.html" class="hover:text-purple-400 transition">Guide</a>
+            <a href="/api-docs.html" class="hover:text-purple-400 transition">API</a>
+            <a href="/privacy.html" class="hover:text-purple-400 transition">Privacy</a>
+            <a href="/terms.html" class="hover:text-purple-400 transition">Terms</a>
             <a href="mailto:support@majic-photo.com" class="hover:text-purple-400 transition">Contact</a>
           </div>
         </div>

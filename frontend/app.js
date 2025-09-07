@@ -136,6 +136,8 @@ async function renderDashboard() {
           <select id="roomFilter" class="border rounded p-2">
             <option value="">All Rooms</option>
           </select>
+          <a href="/user-guide.html" class="bg-green-500 text-white px-3 py-2 rounded hover:bg-green-600 transition text-sm">User Guide</a>
+          <a href="/api-docs.html" class="bg-indigo-500 text-white px-3 py-2 rounded hover:bg-indigo-600 transition text-sm">API Docs</a>
           <button id="refresh" class="bg-blue-500 text-white p-2 rounded">Refresh</button>
           <button id="logout" class="bg-red-500 text-white p-2 rounded">Logout</button>
         </div>
