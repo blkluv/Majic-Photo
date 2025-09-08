@@ -69,6 +69,9 @@
 - 🔌 **Professional Quality**
   Every image is ensured to meet the highest standards of quality with our team of B2B-B2C-driven design experts.
 
+- 💼 **Google Authentication**
+  Latest update includes ability to use Google OAuth to register and login to Majic-Photo.
+
 ---
 
 ## 🚀 Ready to Transform Your Real Estate Photos?
