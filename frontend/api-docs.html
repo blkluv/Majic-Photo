@@ -129,6 +129,44 @@ Content-Type: application/json
             </div>
           </div>
 
+          <div>
+            <h3 class="text-lg font-medium mb-3 text-gray-700">Google OAuth Authentication</h3>
+            
+            <div class="bg-yellow-50 p-4 rounded-lg mb-4">
+              <h4 class="font-medium text-yellow-700 mb-2">🚀 Streamlined Registration</h4>
+              <p class="text-sm text-yellow-600">Users can register and authenticate using their Google accounts for faster onboarding.</p>
+            </div>
+            
+            <h4 class="text-md font-medium mb-2 text-gray-700">Initiate Google OAuth</h4>
+            <div class="bg-gray-900 rounded-lg p-4 mb-4">
+              <pre><code class="language-bash">GET /api/auth/google</code></pre>
+            </div>
+            <p class="text-sm text-gray-600 mb-4">Redirects user to Google OAuth consent screen. After consent, user is redirected to the callback URL with authentication result.</p>
+            
+            <h4 class="text-md font-medium mb-2 text-gray-700">Callback Response</h4>
+            <p class="text-sm text-gray-600 mb-3">On successful authentication, user is redirected to:</p>
+            <div class="bg-gray-900 rounded-lg p-4 mb-4">
+              <pre><code class="language-bash">https://your-domain.com?token=JWT_TOKEN&auth=google</code></pre>
+            </div>
+            
+            <h4 class="text-md font-medium mb-2 text-gray-700">Get OAuth Status</h4>
+            <div class="bg-gray-900 rounded-lg p-4 mb-4">
+              <pre><code class="language-bash">GET /api/auth/oauth-status
+Authorization: Bearer YOUR_JWT_TOKEN</code></pre>
+            </div>
+            
+            <p class="text-sm text-gray-600 mb-3">Response:</p>
+            <div class="bg-gray-900 rounded-lg p-4 mb-4">
+              <pre><code class="language-json">{
+  "authProvider": "google",
+  "hasGoogleAuth": true,
+  "profilePicture": "https://lh3.googleusercontent.com/...",
+  "displayName": "John Doe",
+  "canLinkGoogle": false
+}</code></pre>
+            </div>
+          </div>
+
           <div class="bg-blue-50 p-4 rounded-lg">
             <h4 class="font-medium text-blue-700 mb-2">🔐 Using Your Token</h4>
             <p class="text-sm text-blue-600 mb-2">Include the JWT token in all authenticated requests:</p>

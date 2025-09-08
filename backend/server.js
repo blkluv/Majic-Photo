@@ -3,8 +3,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
 const path = require('path');
+const session = require('express-session');
+const passport = require('./config/passport');
 const authRoutes = require('./routes/auth');
 const photoRoutes = require('./routes/photos');
+const googleAuthRoutes = require('./routes/google-auth');
 const { initMinio } = require('./init-minio');
 
 const app = express();
@@ -36,6 +39,22 @@ const corsOptions = {
 app.use(cors(corsOptions));
 app.use(express.json());
 
+// Configure session middleware for Passport
+app.use(session({
+  secret: process.env.SESSION_SECRET || 'your-session-secret-key',
+  resave: false,
+  saveUninitialized: false,
+  cookie: { 
+    secure: process.env.NODE_ENV === 'production', // Use secure cookies in production
+    httpOnly: true,
+    maxAge: 24 * 60 * 60 * 1000 // 24 hours
+  }
+}));
+
+// Initialize Passport
+app.use(passport.initialize());
+app.use(passport.session());
+
 // Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Connected to MongoDB'))
@@ -46,6 +65,7 @@ initMinio().catch(err => console.error('MinIO initialization error:', err));
 
 // Routes
 app.use('/api/auth', authRoutes);
+app.use('/api/auth', googleAuthRoutes);
 app.use('/api/photos', photoRoutes);
 
 // Serve frontend static files

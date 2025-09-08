@@ -121,25 +121,52 @@ async function renderDashboard() {
     console.log('Photos received:', photos.length, photos);
     console.log('User info:', userInfo);
     document.getElementById('app').innerHTML = `
-      <div class="flex justify-between items-center mb-4">
-        <div class="flex items-center space-x-3">
-          <img src="images/Majic-photo-logo.png" alt="Majic-Photo Logo" class="h-10 w-auto">
-          <h2 class="text-2xl font-bold">Majic-Photo.com</h2>
-          <div class="ml-6 px-3 py-1 ${userInfo.isUnlimited ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'} rounded-full text-sm font-semibold">
+      <!-- Mobile-First Responsive Header -->
+      <div class="mb-4">
+        <!-- Top Row: Logo and Mobile Menu Toggle -->
+        <div class="flex justify-between items-center mb-3">
+          <div class="flex items-center space-x-2 sm:space-x-3">
+            <img src="images/Majic-photo-logo.png" alt="Majic-Photo Logo" class="h-8 sm:h-10 w-auto">
+            <h2 class="text-lg sm:text-2xl font-bold">Majic-Photo.com</h2>
+          </div>
+          <!-- Desktop Credits Badge -->
+          <div class="hidden sm:flex px-3 py-1 ${userInfo.isUnlimited ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'} rounded-full text-sm font-semibold">
+            ${userInfo.isUnlimited ? 'Unlimited' : `${userInfo.remainingCredits}/${userInfo.photoCredits} Credits`}
+          </div>
+          <!-- Mobile Menu Toggle -->
+          <button id="mobileMenuToggle" class="sm:hidden bg-gray-200 p-2 rounded">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Mobile Credits Badge -->
+        <div class="sm:hidden mb-3 flex justify-center">
+          <div class="px-3 py-1 ${userInfo.isUnlimited ? 'bg-green-100 text-green-800' : 'bg-blue-100 text-blue-800'} rounded-full text-sm font-semibold">
             ${userInfo.isUnlimited ? 'Unlimited' : `${userInfo.remainingCredits}/${userInfo.photoCredits} Credits`}
           </div>
         </div>
-        <div class="space-x-2">
-          <select id="addressFilter" class="border rounded p-2">
-            <option value="">All Properties</option>
-          </select>
-          <select id="roomFilter" class="border rounded p-2">
-            <option value="">All Rooms</option>
-          </select>
-          <a href="/user-guide.html" class="bg-green-500 text-white px-3 py-2 rounded hover:bg-green-600 transition text-sm">User Guide</a>
-          <a href="/api-docs.html" class="bg-indigo-500 text-white px-3 py-2 rounded hover:bg-indigo-600 transition text-sm">API Docs</a>
-          <button id="refresh" class="bg-blue-500 text-white p-2 rounded">Refresh</button>
-          <button id="logout" class="bg-red-500 text-white p-2 rounded">Logout</button>
+
+        <!-- Controls Row -->
+        <div id="dashboardControls" class="space-y-3 sm:space-y-0">
+          <!-- Filters Row -->
+          <div class="flex flex-col sm:flex-row gap-2 sm:gap-3">
+            <select id="addressFilter" class="flex-1 sm:flex-none border rounded p-2 text-sm">
+              <option value="">All Properties</option>
+            </select>
+            <select id="roomFilter" class="flex-1 sm:flex-none border rounded p-2 text-sm">
+              <option value="">All Rooms</option>
+            </select>
+          </div>
+
+          <!-- Actions Row -->
+          <div class="grid grid-cols-2 sm:flex gap-2 sm:gap-3">
+            <a href="/user-guide.html" class="bg-green-500 text-white px-3 py-2 rounded hover:bg-green-600 transition text-xs sm:text-sm text-center">User Guide</a>
+            <a href="/api-docs.html" class="bg-indigo-500 text-white px-3 py-2 rounded hover:bg-indigo-600 transition text-xs sm:text-sm text-center">API Docs</a>
+            <button id="refresh" class="bg-blue-500 text-white px-3 py-2 rounded text-xs sm:text-sm">Refresh</button>
+            <button id="logout" class="bg-red-500 text-white px-3 py-2 rounded text-xs sm:text-sm">Logout</button>
+          </div>
         </div>
       </div>
       <div class="mb-4">
@@ -198,6 +225,29 @@ async function renderDashboard() {
       if (refreshInterval) clearInterval(refreshInterval);
       renderLogin();
     });
+
+    // Mobile menu toggle functionality
+    const mobileMenuToggle = document.getElementById('mobileMenuToggle');
+    const dashboardControls = document.getElementById('dashboardControls');
+    
+    if (mobileMenuToggle && dashboardControls) {
+      // Initially hide controls on mobile
+      dashboardControls.classList.add('hidden', 'sm:block');
+      
+      mobileMenuToggle.addEventListener('click', () => {
+        dashboardControls.classList.toggle('hidden');
+        
+        // Update toggle button icon
+        const svg = mobileMenuToggle.querySelector('svg path');
+        if (dashboardControls.classList.contains('hidden')) {
+          // Show hamburger menu
+          svg.setAttribute('d', 'M4 6h16M4 12h16M4 18h16');
+        } else {
+          // Show X icon
+          svg.setAttribute('d', 'M6 18L18 6M6 6l12 12');
+        }
+      });
+    }
     document.getElementById('refresh').addEventListener('click', renderDashboard);
     document.getElementById('uploadBtn').addEventListener('click', handleUpload);
     
