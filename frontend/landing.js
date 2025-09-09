@@ -740,6 +740,9 @@ function initHeroTextRotation() {
   startRotation();
 }
 
+// Make renderLanding available globally
+window.renderLanding = renderLanding;
+
 // Check for Google OAuth callback when page loads
 document.addEventListener('DOMContentLoaded', function() {
   handleGoogleCallback();

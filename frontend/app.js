@@ -699,9 +699,31 @@ function share(url) {
   }
 }
 
-// Initial render
-if (token) {
-  renderDashboard();
+// Initial render - wait for DOM to be ready
+function initializeApp() {
+  if (token) {
+    renderDashboard();
+  } else {
+    // Ensure renderLanding is available (from landing.js)
+    if (typeof renderLanding === 'function') {
+      renderLanding();
+    } else {
+      // Fallback: if landing.js hasn't loaded yet, show landing page directly
+      console.warn('renderLanding not available, showing fallback');
+      renderLogin(); // This is temporary until landing.js loads
+      // Try again in a moment
+      setTimeout(() => {
+        if (typeof renderLanding === 'function' && !token) {
+          renderLanding();
+        }
+      }, 100);
+    }
+  }
+}
+
+// Ensure DOM is ready before initializing
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initializeApp);
 } else {
-  renderLanding(); // Show landing page instead of login
+  initializeApp();
 }
