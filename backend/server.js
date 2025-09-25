@@ -19,8 +19,8 @@ const corsOptions = {
     const allowedOrigins = [
       'https://majic-photo.com',
       'https://www.majic-photo.com',
-      'http://localhost:3000',
-      'http://192.168.69.106:3000'
+  'http://localhost:4004',
+  'http://192.168.69.106:4004'
     ];
     
     // Allow requests with no origin (like mobile apps or Postman)
@@ -80,7 +80,7 @@ app.get('*', (req, res) => {
   });
 });
 
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 4004;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
 });
